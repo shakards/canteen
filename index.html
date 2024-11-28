@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food Canteen</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #f8b400;
+      color: #fff;
+      padding: 10px 20px;
+      text-align: center;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    section {
+      padding: 20px;
+    }
+
+    #menu {
+      background: #f4f4f4;
+    }
+
+    .menu-item {
+      background: #fff;
+      border: 1px solid #ddd;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 5px;
+    }
+
+    #order {
+      background: #eef;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      max-width: 400px;
+      margin: auto;
+    }
+
+    form label {
+      margin: 10px 0 5px;
+    }
+
+    form input, form select, form button {
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    form button {
+      background: #f8b400;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    form button:hover {
+      background: #e89b00;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      background: #333;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome to Food Canteen</h1>
+    <nav>
+      <ul>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#order">Order Now</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="menu">
+    <h2>Our Menu</h2>
+    <div class="menu-item">
+      <h3>Pizza</h3>
+      <p>Delicious cheese pizza with toppings of your choice. - $10</p>
+    </div>
+    <div class="menu-item">
+      <h3>Burger</h3>
+      <p>Juicy beef burger with fresh veggies. - $8</p>
+    </div>
+    <div class="menu-item">
+      <h3>Pasta</h3>
+      <p>Creamy Alfredo pasta with garlic bread. - $12</p>
+    </div>
+  </section>
+
+  <section id="order">
+    <h2>Order Now</h2>
+    <form id="order-form">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+      
+      <label for="item">Select Item:</label>
+      <select id="item" name="item">
+        <option value="Pizza">Pizza - $10</option>
+        <option value="Burger">Burger - $8</option>
+        <option value="Pasta">Pasta - $12</option>
+      </select>
+      
+      <label for="quantity">Quantity:</label>
+      <input type="number" id="quantity" name="quantity" min="1" value="1" required>
+      
+      <button type="button" onclick="calculateOrder()">Submit</button>
+    </form>
+    <div id="order-summary"></div>
+  </section>
+
+  <footer id="contact">
+    <p>Contact Us: 123-456-7890 | canteen@example.com</p>
+    <p>Address: 123 Food Street, Gourmet City</p>
+  </footer>
+
+  <script>
+    function calculateOrder() {
+      const name = document.getElementById("name").value;
+      const item = document.getElementById("item").value;
+      const quantity = document.getElementById("quantity").value;
+
+      let price = 0;
+      if (item === "Pizza") price = 10;
+      else if (item === "Burger") price = 8;
+      else if (item === "Pasta") price = 12;
+
+      const total = price * quantity;
+
+      const summary = `
+        <h3>Order Summary</h3>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Item:</strong> ${item}</p>
+        <p><strong>Quantity:</strong> ${quantity}</p>
+        <p><strong>Total Price:</strong> $${total}</p>
+      `;
+
+      document.getElementById("order-summary").innerHTML = summary;
+    }
+  </script>
+</body>
+</html>
